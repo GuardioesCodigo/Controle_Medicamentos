@@ -7,6 +7,7 @@ namespace ControleMedicamentos.ConsoleApp.Compartilhado.Arquivos;
 public class ContextoJson
 {
     private readonly string caminhoArquivo;
+    public List<Fornecedor> Fornecedores { get; set; } = new List<Fornecedor>();
 
     public ContextoJson()
     {
@@ -47,5 +48,6 @@ public class ContextoJson
         if (contextoSalvo == null)
             return;
 
+        this.Fornecedores = contextoSalvo.Fornecedores;
     }
 }
