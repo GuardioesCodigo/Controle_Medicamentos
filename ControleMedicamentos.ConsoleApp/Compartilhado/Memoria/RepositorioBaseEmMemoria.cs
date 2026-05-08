@@ -2,7 +2,7 @@ using System;
 
 namespace ControleMedicamentos.ConsoleApp.Compartilhado.Memoria;
 
-public class RepositorioBaseEmMemoria
+public abstract class RepositorioBaseEmMemoria<T> where T : EntidadeBase
 {
     protected List<T> registros = new List<T>();
 
