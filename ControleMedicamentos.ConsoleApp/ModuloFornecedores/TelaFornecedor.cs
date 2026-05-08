@@ -17,14 +17,14 @@ public class TelaFornecedor : TelaBase<Fornecedor>, ITelaOpcoes, ITelaCrud
         if (deveExibirCabecalho)
             ExibirCabecalho("Visualização de Fornecedores");
 
-        List<Fornecedor> fornecedors =  repositorio.SelecionarTodos();
+        List<Fornecedor> fornecedores =  repositorio.SelecionarTodos();
 
-        if (fornecedors.Count == 0)
+        if (fornecedores.Count == 0)
         {
             Notificador.ExibirMensagem("Nenhum fornecedor registrado");
         }
 
-        foreach (Fornecedor f in fornecedors)
+        foreach (Fornecedor f in fornecedores)
         {
             Console.WriteLine(
             "{0, -7} | {1, -30} | {2, -15} | {3, -20}",
@@ -52,5 +52,22 @@ public class TelaFornecedor : TelaBase<Fornecedor>, ITelaOpcoes, ITelaCrud
         string cnpjFornecedor = Console.ReadLine() ?? string.Empty;
 
         return new Fornecedor(nomeFornecedor, telefoneFornecedor, cnpjFornecedor);
+    }
+
+    protected override List<string> ValidarRegistroDuplicado(Fornecedor novaEntidade, string? idIgnorado = null)
+    {
+        List<string> erros = new List<string>();
+
+        List<Fornecedor> fornecedores = repositorio.SelecionarTodos();
+
+        foreach (Fornecedor f in fornecedores)
+        {
+            if (f.Id != idIgnorado && f.Nome == novaEntidade.Nome)
+            {
+                erros.Add($"Já existe um Fornecedor com o nome \"{novaEntidade.Nome}\"");
+            }
+        }
+
+        return erros;
     }
 }
