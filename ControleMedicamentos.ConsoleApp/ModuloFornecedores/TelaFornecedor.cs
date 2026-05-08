@@ -62,9 +62,9 @@ public class TelaFornecedor : TelaBase<Fornecedor>, ITelaOpcoes, ITelaCrud
 
         foreach (Fornecedor f in fornecedores)
         {
-            if (f.Id != idIgnorado && f.Nome == novaEntidade.Nome)
+            if (f.Id != idIgnorado && f.Cnpj == novaEntidade.Cnpj)
             {
-                erros.Add($"Já existe um Fornecedor com o nome \"{novaEntidade.Nome}\"");
+                erros.Add($"Já existe um Fornecedor com o CNPJ \"{novaEntidade.Cnpj}\"");
             }
         }
 
