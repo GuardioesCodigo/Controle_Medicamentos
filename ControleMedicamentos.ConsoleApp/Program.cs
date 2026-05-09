@@ -1,60 +1,56 @@
-﻿using System.Text.Json;
-using ControleMedicamentos.ConsoleApp.Compartilhado;
-using ControleMedicamentos.ConsoleApp.Compartilhado.Arquivos;
-using ControleMedicamentos.ConsoleApp.ModuloFornecedores;
-using ControleMedicamentos.ConsoleApp.Utilidades;
+﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Arquivos;
+using ControleMedicamentos.ConsoleApp.ModuloPacientes;
 
-ContextoJson contexto = new ContextoJson();
+namespace ControleMedicamentos.ConsoleApp;
 
-try
+class Program
 {
-    contexto.Carregar();
-}
-catch (JsonException)
-{
-    Notificador.ExibirMensagem("O arquivo de armazenamento está corrompido! Contate o suporte.");
-    return;
-}
-
-IRepositorio<Fornecedor> repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
-
-TelaPrincipal telaPrincipal = new TelaPrincipal(
-    repositorioFornecedor
-);
-
-while (true)
-{
-    ITelaOpcoes? telaSelecionada = telaPrincipal.ApresentarMenuOpcoesPrincipal();
-
-    if (telaSelecionada == null)
+    static void Main(string[] args)
     {
-        Console.Clear();
-        break;
-    }
 
-    while (true)
-    {
-        string? opcaoSubMenu = telaSelecionada.ObterOpcaoMenu();
+        ContextoJson contexto = new ContextoJson();
 
-        if (opcaoSubMenu == "S")
+
+
+        contexto.Carregar();
+
+
+        RepositorioPacienteEmArquivo repoPaciente = new RepositorioPacienteEmArquivo(contexto);
+        TelaPaciente telaPaciente = new TelaPaciente(repoPaciente);
+
+
+
+        while (true)
         {
-            Console.Clear();
-            break;
-        }
+            // O nome correto na sua TelaBase é ObterOpcaoMenu
+            string? opcao = telaPaciente.ObterOpcaoMenu();
 
-        if (telaSelecionada is ITelaCrud telaCrud)
-        {
-            if (opcaoSubMenu == "1")
-                telaCrud.Cadastrar();
+            if (opcao == "S")
+                break;
 
-            else if (opcaoSubMenu == "2")
-                telaCrud.Editar();
+            if (opcao == "1")
+            {
+                telaPaciente.Cadastrar(); // Na TelaBase é Cadastrar e não Inserir
+                contexto.Salvar();
+            }
 
-            else if (opcaoSubMenu == "3")
-                telaCrud.Excluir();
+            else if (opcao == "2")
+            {
+                telaPaciente.Editar();
+                contexto.Salvar();
+            }
 
-            else if (opcaoSubMenu == "4")
-                telaCrud.VisualizarTodos(deveExibirCabecalho: true);
+            else if (opcao == "3")
+            {
+                telaPaciente.Excluir();
+                contexto.Salvar();
+            }
+
+            else if (opcao == "4")
+                telaPaciente.VisualizarTodos(true);
+            Console.WriteLine("\nPressione Enter para continuar...");
+            Console.ReadLine();
+
         }
     }
 }

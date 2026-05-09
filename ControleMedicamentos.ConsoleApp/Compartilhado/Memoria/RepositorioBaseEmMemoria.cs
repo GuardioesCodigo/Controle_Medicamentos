@@ -1,17 +1,20 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
+using ControleMedicamentos.ConsoleApp.Compartilhado;
 namespace ControleMedicamentos.ConsoleApp.Compartilhado.Memoria;
 
-public class RepositorioBaseEmMemoria
+public class RepositorioBaseEmMemoria<T> where T : EntidadeBase
 {
     protected List<T> registros = new List<T>();
 
-    public void Cadastrar(T entidade)
+    public virtual void Cadastrar(T entidade)
     {
         registros.Add(entidade);
     }
 
-    public bool Editar(string idSelecionado, T entidadeAtualizada)
+    public virtual bool Editar(string idSelecionado, T entidadeAtualizada)
     {
         T? registroSelecionado = SelecionarPorId(idSelecionado);
 
@@ -23,12 +26,7 @@ public class RepositorioBaseEmMemoria
         return true;
     }
 
-    public bool Excluir(T registro)
-    {
-        return registros.Remove(registro);
-    }
-
-    public bool Excluir(string idSelecionado)
+    public virtual bool Excluir(string idSelecionado)
     {
         T? registroSelecionado = SelecionarPorId(idSelecionado);
 
@@ -40,18 +38,12 @@ public class RepositorioBaseEmMemoria
         return true;
     }
 
-    public T? SelecionarPorId(string idSelecionado)
+    public virtual T? SelecionarPorId(string idSelecionado)
     {
-        foreach (T registro in registros)
-        {
-            if (registro.Id == idSelecionado)
-                return registro;
-        }
-
-        return null;
+        return registros.FirstOrDefault(x => x.Id == idSelecionado);
     }
 
-    public List<T> SelecionarTodos()
+    public virtual List<T> SelecionarTodos()
     {
         return registros;
     }

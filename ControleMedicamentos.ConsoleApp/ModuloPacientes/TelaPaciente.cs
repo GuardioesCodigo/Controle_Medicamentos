@@ -50,22 +50,37 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaCrud, ITelaOpcoes
             Console.Write("Digite o CPF (11 dígitos): ");
             string cpfDigitado = Console.ReadLine()!;
 
-            if (repoPaciente.CPFJaExiste(cpfDigitado))
+            paciente.CPF = cpfDigitado;
+
+            List<string> erros = paciente.Validar();
+            bool formatoInvalido = erros.Any(e => e.Contains("CPF"));
+
+            bool duplicado = repoPaciente.CPFJaExiste(paciente.CPF);
+
+            if (formatoInvalido)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Erro: Já existe um paciente com este CPF.");
+                Console.WriteLine("Formatando errado! Digite exatamente 11 números.");
                 Console.ResetColor();
-                continue;
+            }
+            else if (duplicado)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Erro: Este CPF já pertence a outro paciente.");
+                Console.ResetColor();
+            }
+            else
+            {
+                break;
             }
 
-            paciente.CPF = cpfDigitado;
-            break;
         }
-
         Console.Write("Digite o Cartão SUS (15 dígitos): ");
         paciente.CartaoSus = Console.ReadLine()!;
 
         return paciente;
 
     }
+
+    while(true)
 }

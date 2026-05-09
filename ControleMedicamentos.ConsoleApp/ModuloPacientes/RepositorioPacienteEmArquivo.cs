@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using ControleMedicamentos.ConsoleApp.Compartilhado;
 using ControleMedicamentos.ConsoleApp.Compartilhado.Arquivos;
 
@@ -12,7 +14,7 @@ public class RepositorioPacienteEmArquivo : RepositorioBaseEmArquivo<Paciente>, 
 
     public List<Paciente> SelecionarRegistros()
     {
-        throw new NotImplementedException();
+        return registros;
     }
 
     protected override List<Paciente> CarregarRegistros()
@@ -24,4 +26,10 @@ public class RepositorioPacienteEmArquivo : RepositorioBaseEmArquivo<Paciente>, 
     {
         return registros.Any(x => x.CPF == cpf);
     }
+
+    public bool CartaoSusJaExiste(string cartaoSus)
+    {
+        return registros.Any(x => x.CartaoSus == cartaoSus);
+    }
+
 }
