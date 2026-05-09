@@ -75,12 +75,29 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaCrud, ITelaOpcoes
             }
 
         }
-        Console.Write("Digite o Cartão SUS (15 dígitos): ");
-        paciente.CartaoSus = Console.ReadLine()!;
 
+        while (true)
+        {
+            Console.Write("Digite o Cartão SUS (15 dígitos): ");
+            paciente.CartaoSus = Console.ReadLine()!;
+
+            List<string> erros = paciente.Validar();
+            bool formatoInvalido = erros.Any(e => e.Contains("SUS"));
+            bool duplicado = repoPaciente.CartaoSusJaExiste(paciente.CartaoSus);
+
+            if (formatoInvalido)
+            {
+                Console.WriteLine("Formato do Cartão SUS inválido! (Devem ser 15 dígitos)");
+            }
+            else if (duplicado)
+            {
+                Console.WriteLine("Erro: Este Cartão SUS já pertence a outro paciente.");
+            }
+            else
+            {
+                break; // Sai do loop se estiver tudo OK
+            }
+        }
         return paciente;
-
     }
-
-    while(true)
 }
