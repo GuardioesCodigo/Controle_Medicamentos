@@ -4,13 +4,13 @@ using ControleMedicamentos.ConsoleApp.Compartilhado.Arquivos;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFuncionarios;
 
-public class RepositorioFuncionariosEmArquivo : RepositorioBaseEmArquivo<Funcionarios>, IRepositorio<Funcionarios>
+public class RepositorioFuncionariosEmArquivo : RepositorioBaseEmArquivo<Funcionario>, IRepositorio<Funcionario>
 {
     public RepositorioFuncionariosEmArquivo(ContextoJson contexto) : base(contexto)
     {
     }
 
-    protected override List<Funcionarios> CarregarRegistros()
+    protected override List<Funcionario> CarregarRegistros()
     {
         return contexto.funcionarios;
     }

@@ -10,7 +10,7 @@ public class ContextoJson
 {
     private readonly string caminhoArquivo;
     public List<Fornecedor> Fornecedores { get; set; } = new List<Fornecedor>();
-    public List<Funcionarios> funcionarios {get; set;} = new List<Funcionarios>();
+    public List<Funcionario> funcionarios {get; set;} = new List<Funcionario>();
 
     public ContextoJson()
     {

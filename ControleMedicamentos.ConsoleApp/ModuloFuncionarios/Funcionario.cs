@@ -5,12 +5,12 @@ using ControleMedicamentos.ConsoleApp.ModuloFornecedores;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFuncionarios;
 
-public class Funcionarios : EntidadeBase
+public class Funcionario : EntidadeBase
 {
     public string Nome {get; set;}
     public string Telefone {get; set;}
     public string Cpf {get ;set;}
-    public Funcionarios(string nome, string telefone, string cpf)
+    public Funcionario(string nome, string telefone, string cpf)
     {
         Nome = nome;
         Telefone = telefone;
@@ -84,7 +84,7 @@ public class Funcionarios : EntidadeBase
 
     public override void AtualizarDados(EntidadeBase entidadeAtualizada)
     {
-        Funcionarios funcionariosAtualizado = (Funcionarios)entidadeAtualizada;
+        Funcionario funcionariosAtualizado = (Funcionario)entidadeAtualizada;
 
         Nome = funcionariosAtualizado.Nome;
         Telefone = funcionariosAtualizado.Telefone;
