@@ -66,15 +66,19 @@ Compartilhado/
  TelaBase.cs
 ModuloFornecedores/
  Fornecedor.cs
- RepositorioFornecedorEmArquivo.cs
+ RepositorioFornecedorEmMemoria.cs
  TelaFornecedor.cs
+ModuloPacientes/
+ Paciente.cs
+ RepositorioPacienteEmArquivo.cs
+ TelaPaciente.cs
 obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  ControleMedicamentos.ConsoleApp.AssemblyInfo.cs
  ControleMedicamentos.ConsoleApp.GlobalUsings.g.cs
+Program.cs
 Utilidades/
  Notificador.cs
- Program.cs
  TelaPrincipal.cs
 
 [metadataReferences]
