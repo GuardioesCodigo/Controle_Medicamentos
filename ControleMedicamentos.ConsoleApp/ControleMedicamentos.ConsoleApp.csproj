@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="ModuloFornecedores\" />
-    <Folder Include="ModuloFuncionarios\" />
   </ItemGroup>
 
 </Project>
