@@ -64,9 +64,6 @@ Compartilhado/
  ITelaOpcoes.cs
  Memoria/RepositorioBaseEmMemoria.cs
  TelaBase.cs
-ModuloFornecedores/
- Fornecedor.cs
- TelaFornecedor.cs
 ModuloMedicamentos/
  Medicamento.cs
  RepositorioMedicamentoEmArquivo.cs
