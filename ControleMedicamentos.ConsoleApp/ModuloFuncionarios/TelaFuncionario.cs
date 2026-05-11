@@ -16,10 +16,12 @@ public class TelaFuncionario : TelaBase<Funcionario>, ITelaOpcoes, ITelaCrud
         if (deveExibirCabecalho)
         ExibirCabecalho("Vizualização de Funcionarios");
    
-        List<Funcionario> funcionarios = new List<Funcionario>();
+        List<Funcionario> funcionarios = repositorio.SelecionarTodos();
 
         if (funcionarios.Count == 0)
+        {
             Notificador.ExibirMensagem("Nenhum registro de Funcionário encontrado");
+        }
 
         foreach (Funcionario f in funcionarios)
         {
@@ -55,7 +57,7 @@ public class TelaFuncionario : TelaBase<Funcionario>, ITelaOpcoes, ITelaCrud
     {
         List<string> erros = new List<string>();
 
-        List<Funcionario> funcionarios = new List<Funcionario>();
+        List<Funcionario> funcionarios = repositorio.SelecionarTodos();
 
         foreach (Funcionario f in funcionarios)
         {
