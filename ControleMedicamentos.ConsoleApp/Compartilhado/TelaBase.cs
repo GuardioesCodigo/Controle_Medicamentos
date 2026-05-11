@@ -34,7 +34,7 @@ public abstract class TelaBase<T> where T : EntidadeBase
         return opcaoMenu;
     }
 
-    public void Cadastrar()
+    public virtual void Cadastrar()
     {
         ExibirCabecalho($"Cadastro de {nomeEntidade}");
 
@@ -93,11 +93,12 @@ public abstract class TelaBase<T> where T : EntidadeBase
             Console.Write("Digite o ID do registro que deseja editar (ou S para sair): ");
             idSelecionado = Console.ReadLine() ?? string.Empty;
 
+            if (!string.IsNullOrEmpty(idSelecionado))
+                break;
+
             if (idSelecionado == "S")
                 return;
 
-            if (idSelecionado.Length == 7)
-                break;
         } while (true);
 
         Console.WriteLine("---------------------------------");
@@ -191,6 +192,24 @@ public abstract class TelaBase<T> where T : EntidadeBase
         repositorio.Excluir(registroSelecionado);
 
         Notificador.ExibirMensagem($"O registro \"{idSelecionado}\" foi excluído com sucesso.");
+    }
+
+    public void ExibirErros(List<string> erros)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\nHouve um ou mais erros na sua requisição");
+
+        foreach (string erro in erros)
+        {
+            Console.WriteLine($" -> {erro}");
+        }
+
+        Console.ResetColor();
+        Console.WriteLine("\nPressione ENTER para continuar");
+
+        Console.ResetColor();
+        Console.WriteLine("\nPressione ENTER para continuar...");
+        Console.ReadLine();
     }
 
     public abstract void VisualizarTodos(bool deveExibirCabecalho);
