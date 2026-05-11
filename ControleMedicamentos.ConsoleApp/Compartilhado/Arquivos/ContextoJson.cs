@@ -55,7 +55,8 @@ public class ContextoJson
             return;
 
         this.Fornecedores = contextoSalvo.Fornecedores;
-
         this.Pacientes = contextoSalvo.Pacientes;
+
+        this.Medicamentos = contextoSalvo.Medicamentos;
     }
 }
