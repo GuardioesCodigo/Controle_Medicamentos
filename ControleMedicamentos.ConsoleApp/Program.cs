@@ -15,7 +15,7 @@ class Program
         contexto.Carregar();
 
 
-        RepositorioPacienteEmArquivo repoPaciente = new RepositorioPacienteEmArquivo(contexto);
+        RepositorioMedicamentosEmArquivo repoPaciente = new RepositorioPacienteEmArquivo(contexto);
         TelaPaciente telaPaciente = new TelaPaciente(repoPaciente);
 
 
