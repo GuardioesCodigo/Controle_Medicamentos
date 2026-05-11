@@ -1,6 +1,7 @@
 using System;
 using System.Formats.Asn1;
 using ControleMedicamentos.ConsoleApp.Compartilhado;
+using ControleMedicamentos.ConsoleApp.ModuloFornecedores;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFuncionarios;
 
@@ -83,11 +84,10 @@ public class Funcionarios : EntidadeBase
 
     public override void AtualizarDados(EntidadeBase entidadeAtualizada)
     {
-        throw new NotImplementedException();
-    }
+        Funcionarios funcionariosAtualizado = (Funcionarios)entidadeAtualizada;
 
-    public override List<string> Validar()
-    {
-        throw new NotImplementedException();
+        Nome = funcionariosAtualizado.Nome;
+        Telefone = funcionariosAtualizado.Telefone;
+        Cpf = funcionariosAtualizado.Cpf;
     }
 }
