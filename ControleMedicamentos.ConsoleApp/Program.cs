@@ -1,64 +1,77 @@
 ﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Arquivos;
 using ControleMedicamentos.ConsoleApp.ModuloPacientes;
 using ControleMedicamentos.ConsoleApp.ModuloMedicamentos;
+using ControleMedicamentos.ConsoleApp.Compartilhado;
+using ControleMedicamentos.ConsoleApp.Utilidades;
+using ControleMedicamentos.ConsoleApp.ModuloFornecedores;
+using ControleMedicamentos.ConsoleApp.ModuloFuncionarios;
+using System.Text.Json;
 
-namespace ControleMedicamentos.ConsoleApp;
 
-class Program
+ContextoJson contexto = new ContextoJson();
+try
 {
-    static void Main(string[] args)
+    contexto.Carregar();
+}
+catch (JsonException)
+{
+    Notificador.ExibirMensagem("O arquivo de armazenamento está corrompido! Contate o suporte.");
+    return;
+}
+
+IRepositorio<Fornecedor> repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
+RepositorioPacienteEmArquivo repositorioPaciente = new RepositorioPacienteEmArquivo(contexto);
+RepositorioMedicamentosEmArquivo repositorioMedicamento = new RepositorioMedicamentosEmArquivo(contexto);
+IRepositorio<Funcionario> repositorioFuncionario = new RepositorioFuncionariosEmArquivo(contexto);
+
+TelaFornecedor telaFornecedor = new TelaFornecedor(repositorioFornecedor);
+TelaPaciente telaPaciente = new TelaPaciente(repositorioPaciente);
+TelaMedicamentos telaMedicamento = new TelaMedicamentos(repositorioMedicamento);
+TelaFuncionario telaFuncionario = new TelaFuncionario(repositorioFuncionario);
+
+TelaPrincipal telaPrincipal = new TelaPrincipal(
+    repositorioFornecedor,
+    repositorioPaciente,
+    repositorioMedicamento,
+    repositorioFuncionario
+);
+
+    while (true)
     {
-        ContextoJson contexto = new ContextoJson();
-        contexto.Carregar();
+        ITelaOpcoes? telaSelecionada = telaPrincipal.ApresentarMenuOpcoesPrincipal();
 
-        RepositorioPacienteEmArquivo repoPaciente = new RepositorioPacienteEmArquivo(contexto);
-        RepositorioMedicamentosEmArquivo repoMedicamento = new RepositorioMedicamentosEmArquivo(contexto);
-
-        TelaPaciente telaPaciente = new TelaPaciente(repoPaciente);
-        TelaMedicamentos telaMedicamento = new TelaMedicamentos(repoMedicamento);
+        if (telaSelecionada == null)
+        {
+            Console.Clear();
+            break;
+        }
 
         while (true)
         {
-            Console.Clear();
-            Console.WriteLine("--- Controle de Medicamentos ---");
-            Console.WriteLine("1 - Gerenciar Pacientes");
-            Console.WriteLine("2 - Gerenciar Medicamentos");
-            Console.WriteLine("S - Sair");
-            Console.Write("\nEscolha uma opção: ");
+            string? opcaoSubMenu = telaSelecionada.ObterOpcaoMenu();
 
-            string? opcaoPrincipal = Console.ReadLine()?.ToUpper();
-
-            if (opcaoPrincipal == "S")
-                break;
-
-            if (opcaoPrincipal == "1")
-                ExecutarMenu(telaPaciente);
-
-            else if (opcaoPrincipal == "2")
-                ExecutarMenu(telaMedicamento);
-        }
-
-        static void ExecutarMenu(dynamic tela)
-        {
-            while (true)
+            if (opcaoSubMenu == "S")
             {
-                string? opcao = tela.ObterOpcaoMenu();
-
-                if (opcao == "S")
-                    break;
-
-                if (opcao == "1")
-                    tela.Cadastrar();
-
-                else if (opcao == "2")
-                    tela.Editar();
-
-                else if (opcao == "3")
-                    tela.Excluir();
-
-                else if (opcao == "4")
-                    tela.VisualizarTodos(true);
+                Console.Clear();
+                break;
             }
-        }
+
+            if (telaSelecionada is ITelaCrud telaCrud)
+            {
+                if (opcaoSubMenu == "1")
+                    telaCrud.Cadastrar();
+
+                else if (opcaoSubMenu == "2")
+                    telaCrud.Editar();
+
+                else if (opcaoSubMenu == "3")
+                    telaCrud.Excluir();
+
+                else if (opcaoSubMenu == "4")
+                    telaCrud.VisualizarTodos(deveExibirCabecalho: true);
+            }
+        }   
     }
-}
+
+
+
