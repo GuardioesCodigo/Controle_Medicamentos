@@ -34,7 +34,7 @@ public abstract class TelaBase<T> where T : EntidadeBase
         return opcaoMenu;
     }
 
-    public void Cadastrar()
+    public virtual void Cadastrar()
     {
         ExibirCabecalho($"Cadastro de {nomeEntidade}");
 
