@@ -67,8 +67,11 @@ Compartilhado/
 ModuloFornecedores/
  Fornecedor.cs
  RepositorioEmArquivo.cs
- RepositorioFornecedorEmMemoria.cs
  TelaFornecedor.cs
+ModuloFuncionarios/
+ Funcionario.cs
+ RepositorioFuncionariosEmArquivo.cs
+ TelaFuncionario.cs
 ModuloMedicamentos/
  Medicamento.cs
  RepositorioMedicamentoEmArquivo.cs
@@ -81,7 +84,6 @@ obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  ControleMedicamentos.ConsoleApp.AssemblyInfo.cs
  ControleMedicamentos.ConsoleApp.GlobalUsings.g.cs
-Program.cs
 Utilidades/
  Notificador.cs
  TelaPrincipal.cs

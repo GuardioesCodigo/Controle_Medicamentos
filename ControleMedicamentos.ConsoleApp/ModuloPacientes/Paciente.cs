@@ -39,7 +39,7 @@ public class Paciente : EntidadeBase
         if (!telefoneValido)
             erros.Add("Telefone inválido.");
 
-        bool susValido = Regex.IsMatch(CartaoSus, @"^\d\d{15}$");
+        bool susValido = Regex.IsMatch(CartaoSus, @"^\d{15}$");
 
         if (!susValido)
             erros.Add("Cartão SUS deve conter 15 digitos.");

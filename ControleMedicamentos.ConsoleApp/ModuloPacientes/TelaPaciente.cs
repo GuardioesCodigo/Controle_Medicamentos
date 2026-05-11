@@ -16,7 +16,7 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaCrud, ITelaOpcoes
         if (deveExibirCabecalho)
             ExibirCabecalho("Visualizando Pacientes");
 
-        List<Paciente> pacientes = repositorio.SelecionarRegistros();
+        List<Paciente> pacientes = repositorio.SelecionarTodos();
 
 
         Console.WriteLine(
@@ -30,6 +30,8 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaCrud, ITelaOpcoes
                 "{0, -5} | {1, -30} | {2, -15} | {3, -15} | {4, -15}",
                 p.Id, p.Nome, p.Telefone, p.CPF, p.CartaoSus);
         }
+
+        Console.ReadLine();
     }
 
     protected override Paciente ObterDadosCadastrais()
