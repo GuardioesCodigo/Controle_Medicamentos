@@ -24,7 +24,7 @@ public class Funcionario : EntidadeBase
         if (string.IsNullOrWhiteSpace(Nome))
             erros.Add("O campo \"Nome\" deve ser preenchido.");
         
-        else if (Nome.Length > 3 && Nome.Length < 100)
+        else if (Nome.Length < 3 && Nome.Length > 100)
             erros.Add("O campo \"Nome\" deve conter entre 3 e 100 caracteres.");
 
         if (string.IsNullOrWhiteSpace(Telefone))

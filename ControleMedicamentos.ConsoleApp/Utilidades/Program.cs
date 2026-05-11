@@ -2,6 +2,7 @@
 using ControleMedicamentos.ConsoleApp.Compartilhado;
 using ControleMedicamentos.ConsoleApp.Compartilhado.Arquivos;
 using ControleMedicamentos.ConsoleApp.ModuloFornecedores;
+using ControleMedicamentos.ConsoleApp.ModuloFuncionarios;
 using ControleMedicamentos.ConsoleApp.Utilidades;
 
 ContextoJson contexto = new ContextoJson();
@@ -17,9 +18,11 @@ catch (JsonException)
 }
 
 IRepositorio<Fornecedor> repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
+IRepositorio<Funcionario> repositorioFuncionario = new RepositorioFuncionariosEmArquivo(contexto);
 
 TelaPrincipal telaPrincipal = new TelaPrincipal(
-    repositorioFornecedor
+    repositorioFornecedor,
+    repositorioFuncionario
 );
 
 while (true)

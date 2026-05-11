@@ -1,5 +1,6 @@
 using System;
 using ControleMedicamentos.ConsoleApp.Compartilhado;
+using ControleMedicamentos.ConsoleApp.Utilidades;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloFuncionarios;
 
@@ -12,11 +13,34 @@ public class TelaFuncionario : TelaBase<Funcionario>, ITelaOpcoes, ITelaCrud
 
     public override void VisualizarTodos(bool deveExibirCabecalho)
     {
-        throw new NotImplementedException();
+        if (deveExibirCabecalho)
+        ExibirCabecalho("Vizualização de Funcionarios");
+   
+        List<Funcionario> funcionarios = new List<Funcionario>();
+
+        if (funcionarios.Count == 0)
+            Notificador.ExibirMensagem("Nenhum registro de Funcionário encontrado");
+
+        foreach (Funcionario f in funcionarios)
+        {
+            Console.WriteLine(
+                "{0, -7} | {1, -30} | {2, -15} | {3, -20}",
+                f.Id, f.Nome, f.Telefone, f.Cpf
+            );
+        }
+
+        if (deveExibirCabecalho)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.Write("Digite ENTER para continuar...");
+            Console.ReadLine();
+        }
     }
 
     protected override Funcionario ObterDadosCadastrais()
     {
+        ExibirCabecalho("Cadastro de Funcionarios");
+
         Console.Write("Digite o nome do Funcionário: ");
         string nomeFuncionario = Console.ReadLine() ?? string.Empty;
 
