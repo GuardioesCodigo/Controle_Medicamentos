@@ -75,6 +75,9 @@ public class TelaMedicamentos : TelaBase<Medicamentos>, ITelaCrud, ITelaOpcoes
 
         public override void Cadastrar()
         {
+
+            RepositorioMedicamentosEmArquivo repo = (RepositorioMedicamentosEmArquivo)repositorio;
+
             ExibirCabecalho("Cadastrando Medicamento");
 
             Medicamentos novoMedicamento = ObterDadosCadastrais();
@@ -83,8 +86,28 @@ public class TelaMedicamentos : TelaBase<Medicamentos>, ITelaCrud, ITelaOpcoes
 
             if (erros.Count > 0)
             {
-                ExibirErros(erros)
+                ExibirErros(erros);
+                return;
             }
+
+            if (repo.MedicamentoJaExiste(novoMedicamento.Nome))
+            {
+                Medicamentos medicamentoExistente = repo.SelecionarPorNome(novoMedicamento.Nome);
+                medicamentoExistente.Quantidade += novoMedicamento.Quantidade;
+
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"\nO medicamento '{novoMedicamento.Nome}' já consta no sistema.");
+                Console.WriteLine($"Foram adicionadas {novoMedicamento.Quantidade} unidades ao estoque atual.");
+                Console.ResetColor();
+            }
+
+            else
+            {
+                repositorio.Cadastrar(novoMedicamento);
+                Console.WriteLine("\nMedicamento cadastrado com sucesso!");
+            }
+
+            Console.ReadLine();
         }
     }
 }
