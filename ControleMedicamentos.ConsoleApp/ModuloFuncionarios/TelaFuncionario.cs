@@ -39,8 +39,6 @@ public class TelaFuncionario : TelaBase<Funcionario>, ITelaOpcoes, ITelaCrud
 
     protected override Funcionario ObterDadosCadastrais()
     {
-        ExibirCabecalho("Cadastro de Funcionarios");
-
         Console.Write("Digite o nome do Funcionário: ");
         string nomeFuncionario = Console.ReadLine() ?? string.Empty;
 

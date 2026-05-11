@@ -48,7 +48,7 @@ public class Fornecedor : EntidadeBase
             erros.Add("O campo \"Telefone\" deve conter entre 10 e 11 caracteres");
 
         if (contemLetraOuSimbolo)
-            erros.Add("O campo \"Telefone\" deve conter entre 10 e 11 caracteres");
+            erros.Add("O campo \"Telefone\" deve conter apenas números");
 
         if (Cnpj.Length < 13 || Cnpj.Length > 15)
             erros.Add("O campo \"Cnpj\" deve conter 14 caracteres");
