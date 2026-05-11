@@ -193,6 +193,24 @@ public abstract class TelaBase<T> where T : EntidadeBase
         Notificador.ExibirMensagem($"O registro \"{idSelecionado}\" foi excluído com sucesso.");
     }
 
+    public void ExibirErros(List<string> erros)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\nHouve um ou mais erros na sua requisição");
+
+        foreach (string erro in erros)
+        {
+            Console.WriteLine($" -> {erro}");
+        }
+
+        Console.ResetColor();
+        Console.WriteLine("\nPressione ENTER para continuar");
+
+        Console.ResetColor();
+        Console.WriteLine("\nPressione ENTER para continuar...");
+        Console.ReadLine();
+    }
+
     public abstract void VisualizarTodos(bool deveExibirCabecalho);
 
     protected void ExibirCabecalho(string titulo)
