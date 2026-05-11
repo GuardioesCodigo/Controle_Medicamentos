@@ -23,6 +23,12 @@ public class RepositorioMedicamentosEmArquivo : RepositorioBaseEmArquivo<Medicam
         return registros;
     }
 
+
+    public void GravaMudancas()
+    {
+        contexto.Salvar();
+    }
+
     protected override List<Medicamentos> CarregarRegistros()
     {
         return contexto.Medicamentos;

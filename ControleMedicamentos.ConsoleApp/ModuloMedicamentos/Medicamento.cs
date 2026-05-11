@@ -26,16 +26,16 @@ public class Medicamentos : EntidadeBase
         if (string.IsNullOrWhiteSpace(Nome))
             erros.Add("O nome é obrigatório.");
 
-        else if (Nome.Length < 3 || Nome.Length > 100)
+        if (Nome.Length < 3 || Nome.Length > 100)
             erros.Add("O nome deve ter entre 3 e 100 caracteres.");
 
-        else if (Descricao.Length < 5 || Descricao.Length > 255)
+        if (Descricao.Length < 5 || Descricao.Length > 255)
             erros.Add("A descrição deve ter entre 5 e 255 caracteres.");
 
-        else if (Quantidade < 0)
+        if (Quantidade < 0)
             erros.Add("A quantidade em estoque não pode ser negativa.");
 
-        else if (string.IsNullOrWhiteSpace(Fornecedor))
+        if (string.IsNullOrWhiteSpace(Fornecedor))
             erros.Add("O fornecedor é obrigatório.");
 
         return erros;

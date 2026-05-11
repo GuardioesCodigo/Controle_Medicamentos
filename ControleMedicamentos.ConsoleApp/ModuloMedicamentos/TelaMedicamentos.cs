@@ -34,7 +34,7 @@ public class TelaMedicamentos : TelaBase<Medicamentos>, ITelaCrud, ITelaOpcoes
             string status = "OK";
             if (medicamento.EstaEmFalta)
             {
-                Console.ForegroundColor = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow; ;
                 status = "EM FALTA";
             }
 
@@ -97,6 +97,8 @@ public class TelaMedicamentos : TelaBase<Medicamentos>, ITelaCrud, ITelaOpcoes
         {
             Medicamentos medicamentoExistente = repo.SelecionarPorNome(novoMedicamento.Nome);
             medicamentoExistente.Quantidade += novoMedicamento.Quantidade;
+
+            repo.GravaMudancas();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"\nO medicamento '{novoMedicamento.Nome}' já consta no sistema.");
