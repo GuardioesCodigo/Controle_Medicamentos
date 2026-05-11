@@ -16,7 +16,7 @@ public class Medicamentos : EntidadeBase
 
     public string Fornecedor { get; set; } = string.Empty;
 
-    public bool EstaEmFalta => Quantidade < 20;
+    public bool EstaEmFalta => Quantidade == 0;
 
 
     public override List<string> Validar()
@@ -48,5 +48,15 @@ public class Medicamentos : EntidadeBase
         this.Descricao = medicamentosAtualizado.Descricao;
         this.Quantidade = medicamentosAtualizado.Quantidade;
         this.Fornecedor = medicamentosAtualizado.Fornecedor;
+    }
+
+    public string Status
+    {
+        get
+        {
+            if (Quantidade < 0) return "ERRO"; // Segurança
+            if (Quantidade < 20) return "EM FALTA";
+            return "DISPONÍVEL";
+        }
     }
 }

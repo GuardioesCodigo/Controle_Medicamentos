@@ -14,6 +14,8 @@ namespace ControleMedicamentos.ConsoleApp.ModuloMedicamentos;
 
 public class RepositorioMedicamentosEmArquivo : RepositorioBaseEmArquivo<Medicamentos>, IRepositorio<Medicamentos>
 {
+
+    public List<Medicamentos> Medicamentos { get; set; } = new List<Medicamentos>();
     public RepositorioMedicamentosEmArquivo(ContextoJson contexto) : base(contexto)
     {
 
