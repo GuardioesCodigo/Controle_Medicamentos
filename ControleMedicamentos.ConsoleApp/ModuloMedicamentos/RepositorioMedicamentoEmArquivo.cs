@@ -20,11 +20,6 @@ public class RepositorioMedicamentosEmArquivo : RepositorioBaseEmArquivo<Medicam
     {
 
     }
-    public List<Medicamentos> SelecionarRegistros()
-    {
-        return registros;
-    }
-
 
     public void GravaMudancas()
     {

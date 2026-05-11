@@ -15,6 +15,16 @@ public abstract class RepositorioBaseEmMemoria<T> where T : EntidadeBase
         registros.Add(entidade);
     }
 
+    public bool Excluir(T registro)
+    {
+        return registros.Remove(registro);
+    }
+
+    public List<T> SelecionarRegistros()
+    {
+        return registros;
+    }
+
     public virtual bool Editar(string idSelecionado, T entidadeAtualizada)
     {
         T? registroSelecionado = SelecionarPorId(idSelecionado);

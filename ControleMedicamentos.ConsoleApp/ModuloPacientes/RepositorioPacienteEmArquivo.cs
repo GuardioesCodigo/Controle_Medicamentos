@@ -12,11 +12,6 @@ public class RepositorioPacienteEmArquivo : RepositorioBaseEmArquivo<Paciente>, 
     {
     }
 
-    public List<Paciente> SelecionarRegistros()
-    {
-        return registros;
-    }
-
     protected override List<Paciente> CarregarRegistros()
     {
         return contexto.Pacientes;

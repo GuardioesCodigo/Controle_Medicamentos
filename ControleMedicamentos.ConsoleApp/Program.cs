@@ -1,6 +1,6 @@
 ﻿using ControleMedicamentos.ConsoleApp.Compartilhado.Arquivos;
 using ControleMedicamentos.ConsoleApp.ModuloPacientes;
-using ControleMedicamentos.ConsoleApp.ModuloMedicamentos; // Adicione este using
+using ControleMedicamentos.ConsoleApp.ModuloMedicamentos;
 
 namespace ControleMedicamentos.ConsoleApp;
 
@@ -11,11 +11,10 @@ class Program
         ContextoJson contexto = new ContextoJson();
         contexto.Carregar();
 
-        // Inicializando os Repositórios
         RepositorioPacienteEmArquivo repoPaciente = new RepositorioPacienteEmArquivo(contexto);
-
-        // Inicializando as Telas
         RepositorioMedicamentosEmArquivo repoMedicamento = new RepositorioMedicamentosEmArquivo(contexto);
+
+        TelaPaciente telaPaciente = new TelaPaciente(repoPaciente);
         TelaMedicamentos telaMedicamento = new TelaMedicamentos(repoMedicamento);
 
         while (true)
@@ -33,7 +32,7 @@ class Program
                 break;
 
             if (opcaoPrincipal == "1")
-                ExecutarMenu(telaMedicamento);
+                ExecutarMenu(telaPaciente);
 
             else if (opcaoPrincipal == "2")
                 ExecutarMenu(telaMedicamento);

@@ -47,6 +47,7 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase
         return conseguiuExcluir;
     }
 
+
     public bool Excluir(string idSelecionado)
     {
         T? registroSelecionado = SelecionarPorId(idSelecionado);
@@ -68,6 +69,10 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase
         return null;
     }
 
+    public List<T> SelecionarRegistros()
+    {
+        return CarregarRegistros();
+    }
     public List<T> SelecionarTodos()
     {
         return registros;

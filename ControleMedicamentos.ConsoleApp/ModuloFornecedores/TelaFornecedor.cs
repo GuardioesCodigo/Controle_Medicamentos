@@ -8,7 +8,7 @@ public class TelaFornecedor : TelaBase<Fornecedor>, ITelaOpcoes, ITelaCrud
 {
     public TelaFornecedor(
         IRepositorio<Fornecedor> repositorio
-        )  : base("Fornecedor", repositorio)
+        ) : base("Fornecedor", repositorio)
     {
     }
 
@@ -17,7 +17,7 @@ public class TelaFornecedor : TelaBase<Fornecedor>, ITelaOpcoes, ITelaCrud
         if (deveExibirCabecalho)
             ExibirCabecalho("Visualização de Fornecedores");
 
-        List<Fornecedor> fornecedores =  repositorio.SelecionarTodos();
+        List<Fornecedor> fornecedores = repositorio.SelecionarTodos();
 
         if (fornecedores.Count == 0)
         {
