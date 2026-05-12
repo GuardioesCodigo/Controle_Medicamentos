@@ -98,4 +98,21 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoDeSaida>, ITelaOpcoes, ITe
             dataRequisicaoSaida
         );
     }
+
+    public override string ObterOpcaoMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Gestão de Estoque - Saídas");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("1 - Registrar Saída");
+        Console.WriteLine("2 - Editar Registro de Saída");
+        Console.WriteLine("3 - Excluir Registro de Saída");
+        Console.WriteLine("4 - Visualizar Saídas Realizadas");
+        Console.WriteLine("S - Voltar ao Menu Principal");
+        Console.WriteLine("---------------------------------");
+        Console.Write("> ");
+
+        return Console.ReadLine()?.ToUpper() ?? "";
+    }
 }

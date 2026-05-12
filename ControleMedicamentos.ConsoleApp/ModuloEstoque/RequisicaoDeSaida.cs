@@ -11,6 +11,10 @@ public class RequisicaoDeSaida : EntidadeBase
     public Medicamentos MedicamentoRequisitado {get; set;}
     public DateTime Data {get; set;}
 
+    public RequisicaoDeSaida()
+    {  
+    }
+
     public RequisicaoDeSaida(Paciente paciente, Medicamentos medicamentoRequisitado, DateTime data)
     {
         Paciente = paciente;

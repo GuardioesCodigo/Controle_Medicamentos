@@ -71,7 +71,6 @@ public class TelaPrincipal
             Console.WriteLine("---------------------------------");
             Console.WriteLine("1 - Gestão de Requisição de Entrada");
             Console.WriteLine("2 - Gestão de Requisição de Saída");
-            Console.WriteLine("S - Sair");
             Console.WriteLine("---------------------------------");
             Console.Write("> ");
             string? opcaoMenuEstoque = Console.ReadLine()?.ToUpper();
