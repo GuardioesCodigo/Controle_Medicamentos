@@ -23,23 +23,25 @@ catch (JsonException)
 }
 
 IRepositorio<Fornecedor> repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
-RepositorioPacienteEmArquivo repositorioPaciente = new RepositorioPacienteEmArquivo(contexto);
-RepositorioMedicamentosEmArquivo repositorioMedicamento = new RepositorioMedicamentosEmArquivo(contexto);
+IRepositorio<Paciente> repositorioPaciente = new RepositorioPacienteEmArquivo(contexto);
+IRepositorio<Medicamentos> repositorioMedicamento = new RepositorioMedicamentosEmArquivo(contexto);
 IRepositorio<Funcionario> repositorioFuncionario = new RepositorioFuncionariosEmArquivo(contexto);
-
 IRepositorio<RequisicaoEntrada> repositorioRequisicaoEntrada = new RepositorioRequisicaoEntrada(contexto);
+IRepositorio<RequisicaoDeSaida> repositorioRequisicaoSaida = new RepositorioRequisicaoSaidaEmArquivo(contexto);
 
 TelaFornecedor telaFornecedor = new TelaFornecedor(repositorioFornecedor);
 TelaPaciente telaPaciente = new TelaPaciente(repositorioPaciente);
 TelaMedicamentos telaMedicamento = new TelaMedicamentos(repositorioMedicamento);
 TelaFuncionario telaFuncionario = new TelaFuncionario(repositorioFuncionario);
+TelaRequisicaoSaida telaRequisicaoSaida = new TelaRequisicaoSaida(repositorioRequisicaoSaida);
 
 TelaPrincipal telaPrincipal = new TelaPrincipal(
     repositorioFornecedor,
     repositorioPaciente,
     repositorioMedicamento,
     repositorioFuncionario,
-    repositorioRequisicaoEntrada
+    repositorioRequisicaoEntrada,
+    repositorioRequisicaoSaida
 );
 
 while (true)

@@ -15,7 +15,7 @@ public class TelaPrincipal
     private readonly IRepositorio<Medicamentos> repositorioMedicamento;
     private readonly IRepositorio<Funcionario> repositorioFuncionario;
     private readonly IRepositorio<RequisicaoEntrada> repositorioRequisicaoEntrada;
-
+    private readonly IRepositorio<RequisicaoDeSaida> repositorioRequisicaoSaida;
 
 
     public TelaPrincipal(
@@ -23,15 +23,16 @@ public class TelaPrincipal
         IRepositorio<Paciente> repositorioPaciente,
         IRepositorio<Medicamentos> repositorioMedicamento,
         IRepositorio<Funcionario> repositorioFuncionario,
-        IRepositorio<RequisicaoEntrada> repositorioRequisicaoEntrada
+        IRepositorio<RequisicaoEntrada> repositorioRequisicaoEntrada,
+        IRepositorio<RequisicaoDeSaida> repositorioRequisicaoSaida
     )
     {
         this.repositorioFornecedor = repositorioFornecedor;
         this.repositorioPaciente = repositorioPaciente;
         this.repositorioMedicamento = repositorioMedicamento;
         this.repositorioFuncionario = repositorioFuncionario;
-
         this.repositorioRequisicaoEntrada = repositorioRequisicaoEntrada;
+        this.repositorioRequisicaoSaida = repositorioRequisicaoSaida;
     }
 
     public ITelaOpcoes? ApresentarMenuOpcoesPrincipal()
