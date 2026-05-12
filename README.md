@@ -5,6 +5,9 @@ O sistema aplica regras de negócio para evitar duplicidade de registros, valida
 
 Desenvolvido por **Iago** e **Dayuã**  durante o curso Fullstack da [Academia do Programador](https://www.academiadoprogramador.net) 2026.
 
+
+![alt text](Arquivo/WindowsTerminal_1YJMODomBD.gif)
+
 ---
 
  FUNCIONALIDADES
