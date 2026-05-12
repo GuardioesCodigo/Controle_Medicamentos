@@ -16,11 +16,10 @@ public class ContextoJson
 
     public List<Paciente> Pacientes { get; set; } = new List<Paciente>();
     public List<Fornecedor> Fornecedores { get; set; } = new List<Fornecedor>();
-
+    public List<RequisicaoDeSaida> requisicoesSaida {get; set;} = new List<RequisicaoDeSaida>();
     public List<RequisicaoEntrada> RequisicoesEntrada { get; set; } = new List<RequisicaoEntrada>();
     public List<Funcionario> funcionarios { get; set; } = new List<Funcionario>();
-
-    public List<Medicamentos> Medicamentos { get; set; } = new();
+    public List<Medicamentos> Medicamentos { get; set; } = new List<Medicamentos>();
 
 
     public ContextoJson()
@@ -72,7 +71,7 @@ public class ContextoJson
 
         this.RequisicoesEntrada = contextoSalvo.RequisicoesEntrada;
 
-
+        this.requisicoesSaida = contextoSalvo.requisicoesSaida;
 
     }
 }
