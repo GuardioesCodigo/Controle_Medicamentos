@@ -7,6 +7,7 @@ using ControleMedicamentos.ConsoleApp.Utilidades;
 using ControleMedicamentos.ConsoleApp.ModuloFornecedores;
 using ControleMedicamentos.ConsoleApp.ModuloFuncionarios;
 using System.Text.Json;
+using ControleMedicamentos.ConsoleApp.ModuloEstoque;
 
 ContextoJson contexto = new ContextoJson();
 
@@ -26,6 +27,8 @@ RepositorioPacienteEmArquivo repositorioPaciente = new RepositorioPacienteEmArqu
 RepositorioMedicamentosEmArquivo repositorioMedicamento = new RepositorioMedicamentosEmArquivo(contexto);
 IRepositorio<Funcionario> repositorioFuncionario = new RepositorioFuncionariosEmArquivo(contexto);
 
+IRepositorio<RequisicaoEntrada> repositorioRequisicaoEntrada = new RepositorioRequisicaoEntrada(contexto);
+
 TelaFornecedor telaFornecedor = new TelaFornecedor(repositorioFornecedor);
 TelaPaciente telaPaciente = new TelaPaciente(repositorioPaciente);
 TelaMedicamentos telaMedicamento = new TelaMedicamentos(repositorioMedicamento);
@@ -35,7 +38,8 @@ TelaPrincipal telaPrincipal = new TelaPrincipal(
     repositorioFornecedor,
     repositorioPaciente,
     repositorioMedicamento,
-    repositorioFuncionario
+    repositorioFuncionario,
+    repositorioRequisicaoEntrada
 );
 
 while (true)
@@ -74,5 +78,5 @@ while (true)
             else if (opcaoSubMenu == "4")
                 telaCrud.VisualizarTodos(deveExibirCabecalho: true);
         }
-    }   
+    }
 }

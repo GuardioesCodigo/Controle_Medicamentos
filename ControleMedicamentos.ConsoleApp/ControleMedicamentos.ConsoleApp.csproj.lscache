@@ -65,9 +65,9 @@ Compartilhado/
  Memoria/RepositorioBaseEmMemoria.cs
  TelaBase.cs
 ModuloEstoque/
- Estoque.cs
- RepositorioEstoqueEmArquivo.cs
- TelaEstoque.cs
+ RepositorioRequisicaoEntrada.cs
+ RequisicaoEntrada.cs
+ TelaRequisicaoEntrada.cs
 ModuloFornecedores/
  Fornecedor.cs
  RepositorioEmArquivo.cs

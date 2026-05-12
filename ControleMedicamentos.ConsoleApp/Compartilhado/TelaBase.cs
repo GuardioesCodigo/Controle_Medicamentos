@@ -3,7 +3,7 @@ using ControleMedicamentos.ConsoleApp.Utilidades;
 
 namespace ControleMedicamentos.ConsoleApp.Compartilhado;
 
-public abstract class TelaBase<T> where T : EntidadeBase
+public abstract class TelaBase<T> : ITelaOpcoes where T : EntidadeBase
 {
     protected string nomeEntidade;
     protected IRepositorio<T> repositorio;

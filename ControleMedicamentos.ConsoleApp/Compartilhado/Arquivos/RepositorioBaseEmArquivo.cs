@@ -16,7 +16,7 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase
 
     protected abstract List<T> CarregarRegistros();
 
-    public void Cadastrar(T entidade)
+    public virtual void Cadastrar(T entidade)
     {
         registros.Add(entidade);
 

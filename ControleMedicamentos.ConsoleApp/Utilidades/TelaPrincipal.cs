@@ -1,5 +1,6 @@
 using System;
 using ControleMedicamentos.ConsoleApp.Compartilhado;
+using ControleMedicamentos.ConsoleApp.ModuloEstoque;
 using ControleMedicamentos.ConsoleApp.ModuloFornecedores;
 using ControleMedicamentos.ConsoleApp.ModuloFuncionarios;
 using ControleMedicamentos.ConsoleApp.ModuloMedicamentos;
@@ -13,19 +14,24 @@ public class TelaPrincipal
     private readonly IRepositorio<Paciente> repositorioPaciente;
     private readonly IRepositorio<Medicamentos> repositorioMedicamento;
     private readonly IRepositorio<Funcionario> repositorioFuncionario;
-    
+    private readonly IRepositorio<RequisicaoEntrada> repositorioRequisicaoEntrada;
+
+
 
     public TelaPrincipal(
         IRepositorio<Fornecedor> repositorioFornecedor,
         IRepositorio<Paciente> repositorioPaciente,
         IRepositorio<Medicamentos> repositorioMedicamento,
-        IRepositorio<Funcionario> repositorioFuncionario
+        IRepositorio<Funcionario> repositorioFuncionario,
+        IRepositorio<RequisicaoEntrada> repositorioRequisicaoEntrada
     )
     {
         this.repositorioFornecedor = repositorioFornecedor;
         this.repositorioPaciente = repositorioPaciente;
         this.repositorioMedicamento = repositorioMedicamento;
         this.repositorioFuncionario = repositorioFuncionario;
+
+        this.repositorioRequisicaoEntrada = repositorioRequisicaoEntrada;
     }
 
     public ITelaOpcoes? ApresentarMenuOpcoesPrincipal()
@@ -56,6 +62,22 @@ public class TelaPrincipal
         if (opcaoMenuPrincipal == "4")
             return new TelaFuncionario(repositorioFuncionario);
 
+        if (opcaoMenuPrincipal == "5")
+        {
+            // 4. Instanciamos as telas auxiliares que a TelaRequisicaoEntrada precisa para selecionar IDs
+            TelaMedicamentos telaMed = new TelaMedicamentos(repositorioMedicamento);
+            TelaFuncionario telaFunc = new TelaFuncionario(repositorioFuncionario);
+
+            // 5. Retornamos a tela de estoque passando o repositório dela e as dependências
+            return new TelaRequisicaoEntrada(
+                (RepositorioRequisicaoEntrada)repositorioRequisicaoEntrada,
+                (RepositorioMedicamentosEmArquivo)repositorioMedicamento,
+                (RepositorioFuncionariosEmArquivo)repositorioFuncionario,
+                telaMed,
+                telaFunc
+            );
+        }
         return null;
+
     }
 }
