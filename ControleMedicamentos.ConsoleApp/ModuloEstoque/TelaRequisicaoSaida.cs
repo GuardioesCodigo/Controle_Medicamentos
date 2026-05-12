@@ -57,7 +57,7 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoDeSaida>, ITelaOpcoes, ITe
     protected override RequisicaoDeSaida ObterDadosCadastrais()
     {
 
-        // telaPaciente.VisualizarTodos(false);
+        telaPaciente.VisualizarTodos(false);
         Console.Write("Digite o nome do Paciente: ");
         string nomePaciente = Console.ReadLine() ?? string.Empty;
 
