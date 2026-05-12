@@ -65,18 +65,43 @@ public class TelaPrincipal
 
         if (opcaoMenuPrincipal == "5")
         {
-            // 4. Instanciamos as telas auxiliares que a TelaRequisicaoEntrada precisa para selecionar IDs
-            TelaMedicamentos telaMed = new TelaMedicamentos(repositorioMedicamento);
-            TelaFuncionario telaFunc = new TelaFuncionario(repositorioFuncionario);
+            Console.Clear();
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Controle de Estoque");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("1 - Gestão de Requisição de Entrada");
+            Console.WriteLine("2 - Gestão de Requisição de Saída");
+            Console.WriteLine("S - Sair");
+            Console.WriteLine("---------------------------------");
+            Console.Write("> ");
+            string? opcaoMenuEstoque = Console.ReadLine()?.ToUpper();
 
-            // 5. Retornamos a tela de estoque passando o repositório dela e as dependências
-            return new TelaRequisicaoEntrada(
-                (RepositorioRequisicaoEntrada)repositorioRequisicaoEntrada,
-                (RepositorioMedicamentosEmArquivo)repositorioMedicamento,
-                (RepositorioFuncionariosEmArquivo)repositorioFuncionario,
-                telaMed,
-                telaFunc
-            );
+            TelaMedicamentos telaMedicamentos = new TelaMedicamentos(repositorioMedicamento);
+            TelaFuncionario telaFunc = new TelaFuncionario(repositorioFuncionario);
+            TelaPaciente telaPaciente = new TelaPaciente(repositorioPaciente);
+
+            if (opcaoMenuEstoque == "1")
+            {
+                return new TelaRequisicaoEntrada(
+                    (RepositorioRequisicaoEntrada)repositorioRequisicaoEntrada,
+                    (RepositorioMedicamentosEmArquivo)repositorioMedicamento,
+                    (RepositorioFuncionariosEmArquivo)repositorioFuncionario,
+                    telaMedicamentos,
+                    telaFunc
+                );
+            }
+
+            if (opcaoMenuEstoque == "2")
+            {
+                    return new TelaRequisicaoSaida(
+                    repositorioRequisicaoSaida, 
+                    repositorioPaciente, 
+                    repositorioMedicamento, 
+                    telaPaciente,
+                    telaMedicamentos
+                );
+            }
+
         }
         return null;
 

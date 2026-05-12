@@ -9,6 +9,7 @@ using ControleMedicamentos.ConsoleApp.ModuloFuncionarios;
 using System.Text.Json;
 using ControleMedicamentos.ConsoleApp.ModuloEstoque;
 
+
 ContextoJson contexto = new ContextoJson();
 
 try
@@ -33,7 +34,7 @@ TelaFornecedor telaFornecedor = new TelaFornecedor(repositorioFornecedor);
 TelaPaciente telaPaciente = new TelaPaciente(repositorioPaciente);
 TelaMedicamentos telaMedicamento = new TelaMedicamentos(repositorioMedicamento);
 TelaFuncionario telaFuncionario = new TelaFuncionario(repositorioFuncionario);
-TelaRequisicaoSaida telaRequisicaoSaida = new TelaRequisicaoSaida(repositorioRequisicaoSaida);
+TelaRequisicaoSaida telaRequisicaoSaida = new TelaRequisicaoSaida(repositorioRequisicaoSaida, repositorioPaciente, repositorioMedicamento, telaPaciente, telaMedicamento);
 
 TelaPrincipal telaPrincipal = new TelaPrincipal(
     repositorioFornecedor,
@@ -43,6 +44,8 @@ TelaPrincipal telaPrincipal = new TelaPrincipal(
     repositorioRequisicaoEntrada,
     repositorioRequisicaoSaida
 );
+
+
 
 while (true)
 {
@@ -57,8 +60,6 @@ while (true)
     while (true)
     {
         string? opcaoSubMenu = telaSelecionada.ObterOpcaoMenu();
-
-
 
         if (opcaoSubMenu == "S")
         {
